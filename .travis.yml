@@ -9,10 +9,10 @@ script:
   - docker container run zackhot/react-test npm test -- --coverage
 
 after_success:
-  - docker image build -t zackhot/multi-client -f ./client
-  - docker image build -t zackhot/multi-nginx -f ./nginx
-  - docker image build -t zackhot/multi-server -f ./server
-  - docker image build -t zackhot/multi-worker -f ./worker
+  - docker image build -t zackhot/multi-client ./client
+  - docker image build -t zackhot/multi-nginx ./nginx
+  - docker image build -t zackhot/multi-server ./server
+  - docker image build -t zackhot/multi-worker ./worker
   # Log in to the Docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push zackhot/multi-client
